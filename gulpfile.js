@@ -49,14 +49,12 @@ gulp.task('webserver', ['compile'] ,function() {
 
 gulp.task('watch', function () {
   livereload.listen();
-  watch(['*.html', 'src/*.js*'], function () {
+  watch(['*.html', 'src/**/*.js'], function () {
     runSequence(['compile'], function() {
       livereload.reload('app.html')
     })
   })
   gulp.start('webserver');
 })
-
-
 
 gulp.task('default', ['compile' ])
