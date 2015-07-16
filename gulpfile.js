@@ -14,6 +14,7 @@ var assign = require('lodash.assign')
 // that keeps tab on what files are changed
 // so that browserify doesn't have to waste
 // time on recompiling unchanged files.
+// https://github.com/gulpjs/gulp/blob/master/docs/recipes/fast-browserify-builds-with-watchify.md
 var customOpts = { debug: true }
 var opts = assign({}, watchify.args, customOpts);
 var wb = watchify(browserify(opts))
@@ -44,8 +45,8 @@ gulp.task('compile', function() {
           'console.warn(errStr); document.write(errStr)')
       console.warn('Error :', err.message); this.emit('end')
     })
-    // write the whole shabang to teh build dir
     .pipe(fs.createWriteStream("build/app.js"))
+    // write the whole shabang to teh build dir
 })
 
 // Handy web server for
@@ -65,15 +66,13 @@ gulp.task('webserver', ['compile'] ,function() {
 // Task that compiles the app,
 // starts a webserver, watches app directory for changes,
 // and on change recompiles, and tells livereload to reload.
-gulp.task('watch', function () {
-  runSequence(['compile'], function() {
-    livereload.listen()
-    gulp.start('webserver')
+gulp.task('watch', ['compile'], function () {
+  livereload.listen()
+  gulp.start('webserver')
 
-    watch(['*.html', 'src/**/*.js'], function () {
-      runSequence(['compile'], function() {
-        livereload.reload('app.html')
-      })
+  watch(['*.html', 'src/**/*.js'], function () {
+    runSequence(['compile'], function() {
+      livereload.reload('app.html')
     })
   })
 })
