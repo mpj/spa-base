@@ -1,8 +1,11 @@
+import $ from 'jquery'
+
+// Bootstrap js is stuck in 2009 so it wants globals
+global.jQuery = $
+
 // Babel can polyfill ES6 stuff for us, such
 // as cool things like fetch and native Promises:
 import 'babelify/polyfill'
-
-import $ from 'jquery'
 
 import React from 'react'
 import api from './api'

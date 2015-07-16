@@ -1,11 +1,29 @@
 <html>
 <head>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- Bootstrap theme (optional) -->
+  <link
+    rel="stylesheet"
+    href="/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+
 </head>
 <body>
+  <!-- App render target -->
   <div id="render-target"></div>
+
+  <!-- Compiled application bundle -->
   <script src="build/app.js"></script>
 
-  <!-- Livereload does automatic reloads on change -->
+  <!-- Bootstrap JS, refuses to play nicely with Browserify -->
+  <script
+    src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- Livereload does automatic reloads on change, only useful for dev server -->
   <script src="http://127.0.0.1:35729/livereload.js"></script>
 </body>
 </html>

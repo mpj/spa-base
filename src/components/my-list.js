@@ -39,12 +39,15 @@ export default class MyListComponent extends React.Component {
     // it is fantastic when you get used to it, trust me.
     // https://facebook.github.io/react/docs/jsx-in-depth.html
     this.render = () =>
-      <div>
+      <div className="container">
+        <h1>REPLACEME (with a title)</h1>
         <button onClick={this.loadStuff}>
           {this.state.loading ? 'Loading...' : 'Click me to load stuff'}
         </button>
         {this.state.stuff.map(x =>
-          <div key={x.id}>{x.title}</div>
+          <div key={x.id} className="row">
+            <div className="col-xs-6 col-md-4">{x.title}</div>
+          </div>
         )}
       </div>
   }
