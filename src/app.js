@@ -7,13 +7,14 @@ global.jQuery = $
 // as cool things like fetch and native Promises:
 import 'babelify/polyfill'
 
-import React from 'react'
 import api from './api'
+
+import {element,tree,render} from 'deku'
 
 // Babel allows us to use ES6 imports, here we are
 // import the default exported object from my-list.js
 // into the variable MyListComponent
-import MyListComponent from './components/my-list'
+import MyList from './components/my-list'
 
 // when DOM is ready, execute the function passed to ready()
 // see docs at https://api.jquery.com/ready/
@@ -22,8 +23,12 @@ $().ready(() => {
   // all out stuff into
   let target = document.getElementById('render-target')
 
-  // Pass the api object as a property into MyListComponent
+  // Pass the api object as a property into MyList
   // (this makes it easy to mock api for testing)
-  // and then render MyListComponent into the target
-  React.render(<MyListComponent api={api} />, target)
+  // and then render MyList into the target
+  let myList = <MyList api={api} />
+  var app = tree(myList)
+  render(app, target)
+
+
 })
