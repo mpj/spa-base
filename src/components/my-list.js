@@ -41,7 +41,7 @@ export default class MyListComponent extends React.Component {
     this.render = () =>
       <div className="container">
         <h1>REPLACEME (with a title)</h1>
-        <button onClick={this.loadStuff}>
+        <button className="btn btn-default" onClick={this.loadStuff}>
           {this.state.loading ? 'Loading...' : 'Click me to load stuff'}
         </button>
         {this.state.stuff.map(x =>
