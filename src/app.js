@@ -1,8 +1,10 @@
-let target = document.getElementById('render-target')
-
+import $ from 'jquery'
 import React from 'react'
 
-React.render(
-  <h1>Hello, world!</h1>,
-  target
-)
+$().ready(() => {
+  let target = document.getElementById('render-target')
+  React.render(
+    <h1>Hello, </h1>,
+    target
+  )
+})

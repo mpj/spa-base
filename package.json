@@ -20,6 +20,13 @@
     "browserify": "^10.2.6",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
-    "react": "^0.13.3"
+    "gulp-livereload": "^3.8.0",
+    "gulp-watch": "^4.3.2",
+    "gulp-webserver": "^0.9.1",
+    "jquery": "^2.1.4",
+    "lodash.assign": "^3.2.0",
+    "react": "^0.13.3",
+    "run-sequence": "^1.1.1",
+    "watchify": "^3.2.3"
   }
 }
