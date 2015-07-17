@@ -49,17 +49,19 @@ gulp.task('compile', function() {
     // write the whole shabang to teh build dir
 })
 
-// Handy web server for
-gulp.task('webserver', ['compile'] ,function() {
-  gulp.src('.')
+gulp.task('webserver-serve', ['compile'] ,function() {
+  return gulp.src('.')
     .pipe(webserver({
-
-      // webserver has support for livereload but we
-      // handle that on our own with gulp-livereload
-      livereload: false,
-
       fallback: 'app.html', // defalt page to serve as root
-      open: true // automatically open browser?
+      port: 80
+    }));
+});
+
+gulp.task('webserver-dev', ['compile'] ,function() {
+  return gulp.src('.')
+    .pipe(webserver({
+      fallback: 'app.html', // defalt page to serve as root
+      open: true
     }));
 });
 
@@ -68,7 +70,7 @@ gulp.task('webserver', ['compile'] ,function() {
 // and on change recompiles, and tells livereload to reload.
 gulp.task('watch', ['compile'], function () {
   livereload.listen()
-  gulp.start('webserver')
+  gulp.start('webserver-dev')
 
   watch(['*.html', 'src/**/*.js'], function () {
     runSequence(['compile'], function() {
@@ -76,6 +78,9 @@ gulp.task('watch', ['compile'], function () {
     })
   })
 })
+
+gulp.task('serve', [ 'webserver-serve'])
+gulp.task('dev',   ['watch'])
 
 // The default task when running just "gulp"
 // is "watch"
